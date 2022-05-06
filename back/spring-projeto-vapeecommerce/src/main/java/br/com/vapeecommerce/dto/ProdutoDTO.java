@@ -1,7 +1,6 @@
 package br.com.vapeecommerce.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import br.com.vapeecommerce.entity.Produto;
 
@@ -9,7 +8,7 @@ public class ProdutoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer codProduto;
+	private Integer idProduto;
 	
 	private String marcaProduto;
 	private String modeloProduto;
@@ -17,36 +16,30 @@ public class ProdutoDTO implements Serializable {
 	private String fotoProduto;
 	private String corProduto;
 	private String avaliacaoProduto;
-
-	private Date updatedProduto;
-	private Date createdProduto;
 	private boolean disponivelProduto;
 	
 	public ProdutoDTO() {
 		
 	}
 
-	public ProdutoDTO(Integer codProduto, String marcaProduto, String modeloProduto, String descricaoProduto,
-			String fotoProduto, String corProduto, String avaliacaoProduto, Date updatedProduto, Date createdProduto,
-			boolean disponivelProduto) {
-		this.codProduto = codProduto;
+	public ProdutoDTO(Integer idProduto, String marcaProduto, String modeloProduto, String descricaoProduto,
+			String fotoProduto, String corProduto, String avaliacaoProduto, boolean disponivelProduto) {
+		this.idProduto = idProduto;
 		this.marcaProduto = marcaProduto;
 		this.modeloProduto = modeloProduto;
 		this.descricaoProduto = descricaoProduto;
 		this.fotoProduto = fotoProduto;
 		this.corProduto = corProduto;
 		this.avaliacaoProduto = avaliacaoProduto;
-		this.updatedProduto = updatedProduto;
-		this.createdProduto = createdProduto;
 		this.disponivelProduto = disponivelProduto;
 	}
 	
-	public Integer getCodProduto() {
-		return codProduto;
+	public Integer getIdProduto() {
+		return idProduto;
 	}
 
-	public void setCodProduto(Integer codProduto) {
-		this.codProduto = codProduto;
+	public void setCodProduto(Integer idProduto) {
+		this.idProduto = idProduto;
 	}
 
 	public String getMarcaProduto() {
@@ -97,22 +90,6 @@ public class ProdutoDTO implements Serializable {
 		this.avaliacaoProduto = avaliacaoProduto;
 	}
 
-	public Date getUpdatedProduto() {
-		return updatedProduto;
-	}
-
-	public void setUpdatedProduto(Date updatedProduto) {
-		this.updatedProduto = updatedProduto;
-	}
-
-	public Date getCreatedProduto() {
-		return createdProduto;
-	}
-
-	public void setCreatedProduto(Date createdProduto) {
-		this.createdProduto = createdProduto;
-	}
-
 	public boolean isDisponivelProduto() {
 		return disponivelProduto;
 	}
@@ -126,15 +103,13 @@ public class ProdutoDTO implements Serializable {
 	}
 
 	public Produto convertToEntity() {
-		return new Produto(getCodProduto(),
+		return new Produto(getIdProduto(),
 						   getMarcaProduto(),
 						   getModeloProduto(),
 						   getDescricaoProduto(),
 						   getFotoProduto(),
 						   getCorProduto(),
 						   getAvaliacaoProduto(),
-						   getUpdatedProduto(),
-						   getCreatedProduto(),
 						   isDisponivelProduto());
 	}
 	

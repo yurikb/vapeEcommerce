@@ -1,8 +1,5 @@
 package br.com.vapeecommerce.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,51 +12,43 @@ public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cod;
+	private Integer id;
 	
-	@Column(nullable = false)
 	private String marca;
-	@Column(nullable = false)
 	private String modelo;
-	@Column(nullable = false)
 	private String descricao;
-	@Column(nullable = false)
 	private String foto;
-	@Column(nullable = false)
 	private String cor;
-	@Column(nullable = false)
 	private String avaliacao;
-
-	private Date updated;
-	private Date created;
-	@Column(nullable = false)
 	private boolean disponivel;
 	
 	public Produto() {
 		
 	}
 	
-	public Produto(Integer cod, String marca, String modelo, String descricao, String foto, String cor,
-			String avaliacao, Date updated, Date created, boolean disponivel) {
+	public Produto(Integer id, String marca, String modelo, String descricao, String foto, String cor,
+			String avaliacao, boolean disponivel) {
 		super();
-		this.cod = cod;
+		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.descricao = descricao;
 		this.foto = foto;
 		this.cor = cor;
 		this.avaliacao = avaliacao;
-		this.updated = updated;
-		this.created = created;
 		this.disponivel = disponivel;
 	}
-
-	public Integer getCod() {
-		return cod;
+	
+	public ProdutoDTO getDTO() {
+		return new ProdutoDTO(getId(), getMarca(), getModelo(), getDescricao(), getFoto(), getCor(), getAvaliacao(), isDisponivel());
 	}
 
-	public void setCod(Integer cod) {
-		this.cod = cod;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setCod(Integer id) {
+		this.id = id;
 	}
 
 	public String getMarca() {
@@ -110,22 +99,6 @@ public class Produto {
 		this.avaliacao = avaliacao;
 	}
 
-	public Date getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
 	public boolean isDisponivel() {
 		return disponivel;
 	}
@@ -134,16 +107,6 @@ public class Produto {
 		this.disponivel = disponivel;
 	}
 	
-	public ProdutoDTO getDTO() {
-		return new ProdutoDTO(getCod(),
-							  getMarca(),
-							  getModelo(),
-							  getDescricao(),
-							  getFoto(),
-							  getAvaliacao(),
-							  getUpdated(),
-							  getCreated(),
-							  isDisponivel());
-	}
+
 	
 }
