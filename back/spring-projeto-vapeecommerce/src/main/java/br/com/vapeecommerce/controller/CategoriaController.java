@@ -15,40 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.vapeecommerce.dto.ProdutoDTO;
-import br.com.vapeecommerce.service.ProdutoService;
+import br.com.vapeecommerce.dto.CategoriaDTO;
+import br.com.vapeecommerce.service.CategoriaService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/produto")
-public class ProdutoController {
+@RequestMapping("/categoria")
+public class CategoriaController {
 	
 	@Autowired
-	ProdutoService service;
+	CategoriaService service;
 	
 	@GetMapping
-	public List<ProdutoDTO> getAll() {
+	public List<CategoriaDTO> getAll() {
 		return service.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ProdutoDTO getById(@PathVariable("id") Integer id) throws Exception {
+	public CategoriaDTO getById(@PathVariable Integer id) throws Exception {
 		return service.getById(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
-		return new ResponseEntity<ProdutoDTO>(service.save(dto), HttpStatus.CREATED);
+	public ResponseEntity<CategoriaDTO> save(@RequestBody CategoriaDTO dto) {
+		return new ResponseEntity<CategoriaDTO>(service.save(dto), HttpStatus.CREATED);
+	}
+	
+	@PutMapping
+	public ResponseEntity<CategoriaDTO> update(@RequestBody CategoriaDTO dto) {
+		return new ResponseEntity<CategoriaDTO>(service.update(dto), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
 	public boolean delete(@PathVariable("id") Integer id) throws Exception {
-		service.delete(id);			
-		return true;
-	}
-	
-	@PutMapping
-	public ResponseEntity<ProdutoDTO> update(@RequestBody ProdutoDTO dto) {
-		return new ResponseEntity<ProdutoDTO>(service.update(dto), HttpStatus.OK);
+		return service.delete(id);
 	}
 }

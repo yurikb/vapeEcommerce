@@ -15,40 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.vapeecommerce.dto.ProdutoDTO;
-import br.com.vapeecommerce.service.ProdutoService;
+import br.com.vapeecommerce.dto.UsuarioDTO;
+import br.com.vapeecommerce.service.UsuarioService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/produto")
-public class ProdutoController {
+@RequestMapping("/usuario")
+public class UsuarioController {
 	
 	@Autowired
-	ProdutoService service;
+	UsuarioService service;
 	
 	@GetMapping
-	public List<ProdutoDTO> getAll() {
-		return service.getAll();
+	public List<UsuarioDTO> getAll() {
+		return this.service.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ProdutoDTO getById(@PathVariable("id") Integer id) throws Exception {
-		return service.getById(id);
+	public UsuarioDTO getById(@PathVariable("id") Integer id) throws Exception {
+		return this.service.getById(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
-		return new ResponseEntity<ProdutoDTO>(service.save(dto), HttpStatus.CREATED);
+	public ResponseEntity<UsuarioDTO> save(@RequestBody UsuarioDTO dto) {
+		return new ResponseEntity<UsuarioDTO>(service.save(dto), HttpStatus.CREATED);
+	}
+	
+	@PutMapping
+	public ResponseEntity<UsuarioDTO> update(@RequestBody UsuarioDTO dto) {
+		return new ResponseEntity<UsuarioDTO>(service.update(dto), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
 	public boolean delete(@PathVariable("id") Integer id) throws Exception {
-		service.delete(id);			
-		return true;
-	}
-	
-	@PutMapping
-	public ResponseEntity<ProdutoDTO> update(@RequestBody ProdutoDTO dto) {
-		return new ResponseEntity<ProdutoDTO>(service.update(dto), HttpStatus.OK);
+		return this.service.delete(id);
 	}
 }

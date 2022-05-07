@@ -17,13 +17,17 @@ public class ProdutoDTO implements Serializable {
 	private String corProduto;
 	private String avaliacaoProduto;
 	private boolean disponivelProduto;
+	private CategoriaDTO categoriaProduto;
+	private UsuarioDTO usuarioProduto;
 	
 	public ProdutoDTO() {
 		
 	}
-
+	
 	public ProdutoDTO(Integer idProduto, String marcaProduto, String modeloProduto, String descricaoProduto,
-			String fotoProduto, String corProduto, String avaliacaoProduto, boolean disponivelProduto) {
+			String fotoProduto, String corProduto, String avaliacaoProduto, boolean disponivelProduto,
+			CategoriaDTO categoriaProduto, UsuarioDTO usuarioProduto) {
+		super();
 		this.idProduto = idProduto;
 		this.marcaProduto = marcaProduto;
 		this.modeloProduto = modeloProduto;
@@ -32,8 +36,24 @@ public class ProdutoDTO implements Serializable {
 		this.corProduto = corProduto;
 		this.avaliacaoProduto = avaliacaoProduto;
 		this.disponivelProduto = disponivelProduto;
+		this.categoriaProduto = categoriaProduto;
+		this.usuarioProduto = usuarioProduto;
 	}
-	
+
+
+
+	public Produto convertToEntity() {
+		return new Produto(getIdProduto(),
+						   getMarcaProduto(),
+						   getModeloProduto(),
+						   getDescricaoProduto(),
+						   getFotoProduto(),
+						   getCorProduto(),
+						   getAvaliacaoProduto(),
+						   isDisponivelProduto(), getCategoriaProduto().convertToEntity(),
+						   getUsuarioProduto().convertToEntity());
+	}
+
 	public Integer getIdProduto() {
 		return idProduto;
 	}
@@ -102,17 +122,27 @@ public class ProdutoDTO implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Produto convertToEntity() {
-		return new Produto(getIdProduto(),
-						   getMarcaProduto(),
-						   getModeloProduto(),
-						   getDescricaoProduto(),
-						   getFotoProduto(),
-						   getCorProduto(),
-						   getAvaliacaoProduto(),
-						   isDisponivelProduto());
+	public CategoriaDTO getCategoriaProduto() {
+		return categoriaProduto;
 	}
-	
-	
 
+	public void setCategoriaProduto(CategoriaDTO categoriaProduto) {
+		this.categoriaProduto = categoriaProduto;
+	}
+
+	public UsuarioDTO getUsuarioProduto() {
+		return usuarioProduto;
+	}
+
+	public void setUsuarioProduto(UsuarioDTO usuarioProduto) {
+		this.usuarioProduto = usuarioProduto;
+	}
+
+	public void setIdProduto(Integer idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	
+	
+	
 }

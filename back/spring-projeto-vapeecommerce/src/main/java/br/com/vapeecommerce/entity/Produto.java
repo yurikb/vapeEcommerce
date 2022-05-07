@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import br.com.vapeecommerce.dto.ProdutoDTO;
 
@@ -22,12 +24,20 @@ public class Produto {
 	private String avaliacao;
 	private boolean disponivel;
 	
+	@ManyToOne
+	@JoinColumn(name="id_categoria")
+	private Categoria categoria;
+	
+	@ManyToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
+	
 	public Produto() {
 		
 	}
 	
-	public Produto(Integer id, String marca, String modelo, String descricao, String foto, String cor,
-			String avaliacao, boolean disponivel) {
+	public Produto(Integer id, String marca, String modelo, String descricao, String foto, String cor, String avaliacao,
+			boolean disponivel, Categoria categoria, Usuario usuario) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -37,10 +47,15 @@ public class Produto {
 		this.cor = cor;
 		this.avaliacao = avaliacao;
 		this.disponivel = disponivel;
+		this.categoria = categoria;
+		this.usuario = usuario;
 	}
-	
+
 	public ProdutoDTO getDTO() {
-		return new ProdutoDTO(getId(), getMarca(), getModelo(), getDescricao(), getFoto(), getCor(), getAvaliacao(), isDisponivel());
+		return new ProdutoDTO(getId(), getMarca(),
+							  getModelo(), getDescricao(),
+							  getFoto(), getCor(), getAvaliacao(),
+							  isDisponivel(), getCategoria().getDTO(), getUsuario().getDTO());
 	}
 
 	public Integer getId() {
@@ -106,7 +121,27 @@ public class Produto {
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
-	
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 	
 }

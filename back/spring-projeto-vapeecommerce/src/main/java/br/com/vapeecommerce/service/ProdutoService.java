@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.vapeecommerce.dto.ProdutoDTO;
 import br.com.vapeecommerce.entity.Produto;
 import br.com.vapeecommerce.repository.ProdutoRepository;
 
+@Service
 public class ProdutoService {
 	
 	@Autowired
@@ -16,7 +18,7 @@ public class ProdutoService {
 	
 	public List<ProdutoDTO> getAll() {
 		List<Produto> produtos = repository.findAll();
-		List<ProdutoDTO> listDTOs = new ArrayList<ProdutoDTO>();
+		List<ProdutoDTO> listDTOs = new ArrayList<>();
 		
 		for (Produto produto : produtos) {
 			listDTOs.add(produto.getDTO());
