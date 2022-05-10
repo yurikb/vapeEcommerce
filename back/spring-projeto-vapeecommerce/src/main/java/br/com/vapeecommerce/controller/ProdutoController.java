@@ -36,7 +36,7 @@ public class ProdutoController {
 		return service.getById(id);
 	}
 	
-	@PostMapping
+	@PostMapping("/save")
 	public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
 		return new ResponseEntity<ProdutoDTO>(service.save(dto), HttpStatus.CREATED);
 	}

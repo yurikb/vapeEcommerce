@@ -28,16 +28,12 @@ public class Produto {
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	
-	@ManyToOne
-	@JoinColumn(name="id_usuario")
-	private Usuario usuario;
-	
 	public Produto() {
 		
 	}
 	
 	public Produto(Integer id, String marca, String modelo, String descricao, String foto, String cor, String avaliacao,
-			boolean disponivel, Categoria categoria, Usuario usuario) {
+			boolean disponivel, Categoria categoria) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -48,14 +44,13 @@ public class Produto {
 		this.avaliacao = avaliacao;
 		this.disponivel = disponivel;
 		this.categoria = categoria;
-		this.usuario = usuario;
 	}
 
 	public ProdutoDTO getDTO() {
 		return new ProdutoDTO(getId(), getMarca(),
 							  getModelo(), getDescricao(),
 							  getFoto(), getCor(), getAvaliacao(),
-							  isDisponivel(), getCategoria().getDTO(), getUsuario().getDTO());
+							  isDisponivel(), getCategoria().getDTO());
 	}
 
 	public Integer getId() {
@@ -128,14 +123,6 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public void setId(Integer id) {

@@ -9,6 +9,11 @@ import { ProdutoSaveComponent } from './components/produto/produto-save/produto-
 import { CategoriaListComponent } from './components/categoria/categoria-list/categoria-list.component';
 import { CategoriaSaveComponent } from './components/categoria/categoria-save/categoria-save.component';
 
+// Modules Imports
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,13 +21,10 @@ import { CategoriaSaveComponent } from './components/categoria/categoria-save/ca
     ProdutoListComponent,
     ProdutoSaveComponent,
     CategoriaListComponent,
-    CategoriaSaveComponent
+    CategoriaSaveComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgbModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

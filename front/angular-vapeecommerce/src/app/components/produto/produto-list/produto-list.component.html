@@ -1,1 +1,31 @@
-<p>produto-list works!</p>
+<div class="container">
+  <div class="row">
+    <!-- Card container -->
+    <div
+      *ngFor="let produto of listaProdutos$ | async"
+      class="card"
+      style="width: 22rem; margin: 20px"
+    >
+      <img
+        src="{{ produto.fotoProduto }}"
+        class="card-img-top"
+        alt="{{ produto.modeloProduto }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ produto.marcaProduto }} {{ produto.modeloProduto }}
+        </h5>
+        <p>Avaliação: {{ produto.avaliacaoProduto }}</p>
+        <p>Cor: {{ produto.corProduto }}</p>
+        <p class="card-text">
+          {{ produto.descricaoProduto }}
+        </p>
+        <a href="#" class="btn btn-primary">Editar</a>
+        <a (click)="delete(produto.idProduto)" href="#" class="btn btn-danger"
+          >Deletar</a
+        >
+        <a href="#" class="btn btn-success">Comprar</a>
+      </div>
+    </div>
+  </div>
+</div>

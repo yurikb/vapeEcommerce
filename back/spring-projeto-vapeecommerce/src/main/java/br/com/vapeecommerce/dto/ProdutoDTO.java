@@ -18,7 +18,6 @@ public class ProdutoDTO implements Serializable {
 	private String avaliacaoProduto;
 	private boolean disponivelProduto;
 	private CategoriaDTO categoriaProduto;
-	private UsuarioDTO usuarioProduto;
 	
 	public ProdutoDTO() {
 		
@@ -26,7 +25,7 @@ public class ProdutoDTO implements Serializable {
 	
 	public ProdutoDTO(Integer idProduto, String marcaProduto, String modeloProduto, String descricaoProduto,
 			String fotoProduto, String corProduto, String avaliacaoProduto, boolean disponivelProduto,
-			CategoriaDTO categoriaProduto, UsuarioDTO usuarioProduto) {
+			CategoriaDTO categoriaProduto) {
 		super();
 		this.idProduto = idProduto;
 		this.marcaProduto = marcaProduto;
@@ -37,7 +36,6 @@ public class ProdutoDTO implements Serializable {
 		this.avaliacaoProduto = avaliacaoProduto;
 		this.disponivelProduto = disponivelProduto;
 		this.categoriaProduto = categoriaProduto;
-		this.usuarioProduto = usuarioProduto;
 	}
 
 
@@ -50,8 +48,8 @@ public class ProdutoDTO implements Serializable {
 						   getFotoProduto(),
 						   getCorProduto(),
 						   getAvaliacaoProduto(),
-						   isDisponivelProduto(), getCategoriaProduto().convertToEntity(),
-						   getUsuarioProduto().convertToEntity());
+						   isDisponivelProduto(), getCategoriaProduto().convertToEntity()
+						   );
 	}
 
 	public Integer getIdProduto() {
@@ -128,14 +126,6 @@ public class ProdutoDTO implements Serializable {
 
 	public void setCategoriaProduto(CategoriaDTO categoriaProduto) {
 		this.categoriaProduto = categoriaProduto;
-	}
-
-	public UsuarioDTO getUsuarioProduto() {
-		return usuarioProduto;
-	}
-
-	public void setUsuarioProduto(UsuarioDTO usuarioProduto) {
-		this.usuarioProduto = usuarioProduto;
 	}
 
 	public void setIdProduto(Integer idProduto) {
