@@ -13,6 +13,8 @@ import { CategoriaSaveComponent } from './components/categoria/categoria-save/ca
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProdutoModalDeleteComponent } from './components/produto/produto-modal-delete/produto-modal-delete.component';
+import { ProdutoModalSaveComponent } from './components/produto/produto-modal-save/produto-modal-save.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProdutoSaveComponent,
     CategoriaListComponent,
     CategoriaSaveComponent,
+    ProdutoModalDeleteComponent,
+    ProdutoModalSaveComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgbModule],
   providers: [],

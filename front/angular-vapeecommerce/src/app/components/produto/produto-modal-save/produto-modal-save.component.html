@@ -1,0 +1,43 @@
+<div
+  class="modal fade"
+  id="modalSaveProduto"
+  tabindex="-1"
+  aria-labelledby="modalSaveProdutoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSaveProdutoLabel">
+          Editar Produto <b>#{{ produtoSave.idProduto }}</b>
+        </h5>
+        <button
+          (click)="updateStatus(false)"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-produto-save
+          [status]="statusSave$"
+          [produtoSave]="produtoSave"
+        ></app-produto-save>
+      </div>
+      <div class="modal-footer">
+        <button
+          (click)="updateStatus(false)"
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          id="btnModalSaveProdutoCancel"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

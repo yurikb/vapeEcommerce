@@ -1,1 +1,91 @@
-<p>produto-save works!</p>
+<h1 class="mb-4 text-center">Adicionar Produto</h1>
+
+<div class="container">
+  <div class="mb-3">
+    <label for="marcaProduto" class="form-label">Marca</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="produtoSave.marcaProduto"
+      id="marcaProduto"
+      placeholder="Marca..."
+    />
+    <span *ngIf="produtoSave.idProduto" class="id-hidden">
+      <input
+        type="hidden"
+        name="idProduto"
+        [(ngModel)]="produtoSave.idProduto"
+      />
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="modeloProduto" class="form-label">Modelo</label>
+    <input
+      type="text"
+      [(ngModel)]="produtoSave.modeloProduto"
+      class="form-control"
+      id="modeloProduto"
+      placeholder="Modelo..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="descricaoProduto" class="form-label">Descrição</label>
+    <textarea
+      class="form-control"
+      [(ngModel)]="produtoSave.descricaoProduto"
+      id="descricaoProduto"
+      placeholder="Descrição..."
+    >
+    </textarea>
+  </div>
+  <div class="mb-3">
+    <label for="fotoProduto" class="form-label">Imagem do produto</label>
+    <input
+      type="text"
+      [(ngModel)]="produtoSave.fotoProduto"
+      class="form-control"
+      id="fotoProduto"
+      placeholder="URL da imagem..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="corProduto" class="form-label">Cor</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="produtoSave.corProduto"
+      id="corProduto"
+      placeholder="Cor..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="avaliacaoProduto" class="form-label">Avaliação</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="produtoSave.avaliacaoProduto"
+      id="avaliacaoProduto"
+      placeholder="Avaliação..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="categoriaProduto" class="form-label">Categoria</label>
+    <select
+      name="categoriaProduto"
+      id="categoriaProduto"
+      class="form-control"
+      [(ngModel)]="produtoSave.categoriaProduto.idCategoria"
+    >
+      <option value="" default>Selecione...</option>
+      <option
+        *ngFor="let categoria of categoriasList$ | async"
+        value="{{ categoria.idCategoria }}"
+      >
+        {{ categoria.tipoCategoria }}
+      </option>
+    </select>
+  </div>
+
+  <!-- <button (click)="cancel()" class="btn btn-sm btn-danger">Cancelar</button> -->
+  <button (click)="save()" class="btn btn-primary">Salvar</button>
+</div>

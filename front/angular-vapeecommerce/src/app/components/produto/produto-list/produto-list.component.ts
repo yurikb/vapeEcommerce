@@ -1,6 +1,6 @@
 import { ProdutoServiceService } from './../../../services/produto-service.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Produto } from 'src/app/models/produto';
 
 @Component({
@@ -10,12 +10,23 @@ import { Produto } from 'src/app/models/produto';
 })
 export class ProdutoListComponent implements OnInit {
   listaProdutos$ = new Observable<Produto[]>();
+  produtoAction = new Produto({});
   produtoDel = new Produto({});
+
+  criando$ = new Subject<boolean>();
+  criado$ = new Subject<boolean>();
+
+  monitoraStatusAction$ = new Subject<boolean>();
 
   constructor(private service: ProdutoServiceService) {}
 
   ngOnInit(): void {
     this.list();
+
+    this.monitoraStatusAction$.subscribe((resp) => {
+      this.produtoAction = new Produto({});
+      this.list();
+    });
   }
 
   list() {
@@ -40,5 +51,11 @@ export class ProdutoListComponent implements OnInit {
       this.produtoDel = resp;
       this.list();
     });
+  }
+
+  confirmAction(produto: Produto) {
+    if (produto) {
+      this.produtoAction = produto;
+    }
   }
 }

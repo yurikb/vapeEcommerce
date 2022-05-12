@@ -1,3 +1,10 @@
+<div class="banner">
+  <img
+    src="https://images.tcdn.com.br/img/img_prod/1088339/1649128632_fullbanner-site-02.png"
+    alt="banner de promoção"
+  />
+</div>
+
 <div class="container">
   <div class="row">
     <!-- Card container -->
@@ -15,17 +22,50 @@
         <h5 class="card-title">
           {{ produto.marcaProduto }} {{ produto.modeloProduto }}
         </h5>
-        <p>Avaliação: {{ produto.avaliacaoProduto }}</p>
-        <p>Cor: {{ produto.corProduto }}</p>
         <p class="card-text">
           {{ produto.descricaoProduto }}
         </p>
-        <a href="#" class="btn btn-primary">Editar</a>
-        <a (click)="delete(produto.idProduto)" href="#" class="btn btn-danger"
-          >Deletar</a
+        <p class="card-text">Avaliação: {{ produto.avaliacaoProduto }}</p>
+        <p class="card-text">Cor: {{ produto.corProduto }}</p>
+
+        <button
+          (click)="confirmAction(produto)"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#modalSaveProduto"
         >
-        <a href="#" class="btn btn-success">Comprar</a>
+          Editar
+        </button>
+        <button
+          (click)="confirmAction(produto)"
+          class="btn btn-danger"
+          data-toggle="modal"
+          data-target="#modalDeleteProduto"
+        >
+          Deletar
+        </button>
+        <button class="btn btn-success">Comprar</button>
+
+        <div *ngIf="criando$ | async" id="add">
+          <app-produto-save [status]="criado$"></app-produto-save>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Delete -->
+<div id="modal-delete-container">
+  <app-produto-modal-delete
+    [statusDelete$]="monitoraStatusAction$"
+    [produtoDel]="produtoAction"
+  ></app-produto-modal-delete>
+</div>
+
+<!-- Modal Save -->
+<div id="modal-save-container">
+  <app-produto-modal-save
+    [statusSave$]="monitoraStatusAction$"
+    [produtoSave]="produtoAction"
+  ></app-produto-modal-save>
 </div>

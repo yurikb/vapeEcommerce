@@ -1,17 +1,17 @@
 package br.com.vapeecommerce.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import br.com.vapeecommerce.dto.ProdutoDTO;
 
 @Entity
 public class Produto {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -24,7 +24,7 @@ public class Produto {
 	private String avaliacao;
 	private boolean disponivel;
 	
-	@ManyToOne
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	
